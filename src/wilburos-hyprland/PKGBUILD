@@ -23,9 +23,9 @@ prepare() {
 
 package() {
     local _configdir="$pkgdir"/etc/skel/.config
-    local _hydir="$_configdir"/hyprland
+    local _hydir="$_configdir"/hypr
 
     mkdir -p $_hydir
 
-    cp -r "$srcdir"/.config/hyprland/* $_hydir
+    cp -r "$srcdir"/.config/hypr/* $_hydir
 }

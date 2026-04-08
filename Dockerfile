@@ -19,13 +19,44 @@ RUN mkdir .gnupg && \
     cd paru && \
     makepkg --noconfirm --syncdeps --rmdeps --install --clean
 
+USER root
 
+RUN pacman -Sy --noconfirm hyprland \
+    hypridle \
+    hyprlock \
+    hyprland-qt-support \
+    hyprlauncher \
+    kitty \
+    waybar \
+    pipewire \
+    wireplumber \
+    pipewire-alsa \
+    pipewire-pulse \
+    pipewire-jack \
+    pulsemixer \ 
+    gst-plugin-pipewire \
+    bluez \
+    bluez-utils \
+    libde265 \
+    libdv \
+    libmpeg2 \
+    libtheora \
+    libvpx \
+    x264 \
+    x265 \
+    xvidcore \
+    gstreamer \
+    ffmpeg \
+    gst-libav \
+    gst-plugins-good \
+    gst-plugins-ugly \
+    gst-plugins-bad
 
 
 COPY src /home/build/src
 COPY build.sh /home/build
 
-USER root
+
 
 RUN chmod +x /home/build/build.sh
 RUN chown -R build:build /home/build
