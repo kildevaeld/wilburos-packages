@@ -1,0 +1,31 @@
+# Maintainer: Rasmus <rasmuskildevaeld@gmail.com>
+
+pkgname="wilburos-hyprland"
+pkgver=1.0
+pkgrel=1
+pkgdesc='Wilburos Hyprland configuration'
+arch=('any')
+url="https://github.com/kildevaeld/wilburos-packages"
+license=('GPL3')
+depends=(
+    'hyprland'
+    'hypridle'
+    'hyprlock'
+    'hyprland-qt-support'
+    'hyprlauncher'
+    'kitty'
+    'waybar'
+)
+
+prepare() {
+    cp -af ../data/. "$srcdir"
+}
+
+package() {
+    local _configdir="$pkgdir"/etc/skel/.config
+    local _hydir="$_configdir"/hyprland
+
+    mkdir -p $_hydir
+
+    cp -r "$srcdir"/.config/hyprland/* $_hydir
+}
