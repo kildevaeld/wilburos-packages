@@ -13,6 +13,8 @@ depends=(
     'hyprlock'
     'hyprland-qt-support'
     'hyprlauncher'
+    'hyprcursor'
+    'hyprpolkitagent'
     'kitty'
     'waybar'
     # Network
