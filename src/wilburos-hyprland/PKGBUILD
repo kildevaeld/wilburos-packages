@@ -15,6 +15,11 @@ depends=(
     'hyprlauncher'
     'kitty'
     'waybar'
+    # Network
+    'nm-connection-editor'
+    'network-manager-applet'
+    # Bluetooth
+    'blueman'
 )
 
 prepare() {
