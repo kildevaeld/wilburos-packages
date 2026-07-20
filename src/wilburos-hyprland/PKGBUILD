@@ -16,14 +16,26 @@ depends=(
     'hyprcursor'
     'hyprshutdown'
     'hyprpolkitagent'
-    'kitty'
+    'xdg-desktop-portal-hyprland'
     'waybar'
     'otf-font-awesome'
+    'wl-clipboard'
     # Network
     'nm-connection-editor'
     'network-manager-applet'
     # Bluetooth
     'blueman'
+    # Apps
+    'firefox'
+    'kitty'
+    ## File Manager
+    'thunar'
+    'thunar-archive-plugin'
+    'thunar-volman'
+    'thunar-vcs-plugin'
+    'thunar-shares-plugin'
+
+    'ttf-firacode-nerd'
 )
 
 prepare() {
