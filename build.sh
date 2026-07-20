@@ -7,7 +7,7 @@ DATA_DIR=/data
 
 PACKAGES=$(ls ${SOURCE_DIR})
 
-AUR_PACKAGES=$(cat ./aur-packages)
+# AUR_PACKAGES=$(cat ./aur-packages)
 
 # for AUR in ${AUR_PACKAGES}; do
 #     echo "Building AUR package: ${AUR}"

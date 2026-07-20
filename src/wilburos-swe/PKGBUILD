@@ -1,0 +1,21 @@
+# Maintainer: Rasmus <rasmuskildevaeld@gmail.com>
+
+pkgname="wilburos-swe"
+pkgver=1.0
+pkgrel=1
+pkgdesc='Wilburos SWE configuration'
+arch=('any')
+url="https://github.com/kildevaeld/wilburos-packages"
+license=('GPL3')
+depends=(
+    'base-devel'
+    'mold'
+    'rustup'
+    'clang'
+    'cmake'
+    'lua'
+    'fnm' # Node.js version manager
+    'python'
+    'uv'
+    'fish'
+)

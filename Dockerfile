@@ -53,6 +53,18 @@ RUN pacman -Sy --noconfirm hyprland \
     gst-plugins-bad
 
 
+USER build
+
+RUN paru -Sy --noconfirm \
+    otf-font-awesome \
+    wl-clipboard \
+    clipvault \
+    nm-connection-editor \
+    network-manager-applet \ 
+    rust
+
+USER root
+
 COPY src /home/build/src
 COPY build.sh /home/build
 COPY aur-packages /home/build
@@ -61,7 +73,11 @@ COPY aur-packages /home/build
 RUN chmod +x /home/build/build.sh
 RUN chown -R build:build /home/build
 
+RUN pacman -R --noconfirm rust
+
 USER build
+
+
 
 VOLUME [ "/data" ]
 
