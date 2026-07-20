@@ -20,6 +20,7 @@ depends=(
     'waybar'
     'otf-font-awesome'
     'wl-clipboard'
+    'clipvault'
     # Network
     'nm-connection-editor'
     'network-manager-applet'

@@ -55,7 +55,7 @@ RUN pacman -Sy --noconfirm hyprland \
 
 COPY src /home/build/src
 COPY build.sh /home/build
-
+COPY aur-packages /home/build
 
 
 RUN chmod +x /home/build/build.sh

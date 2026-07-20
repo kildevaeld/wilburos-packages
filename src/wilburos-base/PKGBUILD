@@ -31,4 +31,6 @@ depends=(
     'gst-plugins-good'
     'gst-plugins-ugly'
     'gst-plugins-bad'
+
+    'paru'
 )
