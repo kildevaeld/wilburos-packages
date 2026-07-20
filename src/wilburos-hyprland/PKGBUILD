@@ -1,7 +1,7 @@
 # Maintainer: Rasmus <rasmuskildevaeld@gmail.com>
 
 pkgname="wilburos-hyprland"
-pkgver=1.1
+pkgver=1.2
 pkgrel=1
 pkgdesc='Wilburos Hyprland configuration'
 arch=('any')
