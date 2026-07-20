@@ -14,9 +14,11 @@ depends=(
     'hyprland-qt-support'
     'hyprlauncher'
     'hyprcursor'
+    'hyprshutdown'
     'hyprpolkitagent'
     'kitty'
     'waybar'
+    'otf-font-awesome'
     # Network
     'nm-connection-editor'
     'network-manager-applet'
