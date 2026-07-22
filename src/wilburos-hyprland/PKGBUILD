@@ -21,6 +21,11 @@ depends=(
     'otf-font-awesome'
     'wl-clipboard'
     'clipvault'
+    'dunst' # notification daemon
+    # Screenshot
+    'grim'
+    'slurp'
+    'swappy'
     # Network
     'nm-connection-editor'
     'network-manager-applet'

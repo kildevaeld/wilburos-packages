@@ -18,4 +18,5 @@ depends=(
     'python'
     'uv'
     'fish'
+    'zed'
 )

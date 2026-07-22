@@ -8,7 +8,9 @@ arch=('any')
 url="https://github.com/kildevaeld/wilburos-packages"
 license=('GPL3')
 depends=(
+    # Multimedia
     'pipewire'
+    'pipewire-audio'
     'wireplumber'
     'pipewire-alsa'
     'pipewire-pulse'
@@ -31,6 +33,10 @@ depends=(
     'gst-plugins-good'
     'gst-plugins-ugly'
     'gst-plugins-bad'
-
+    # Package manager
     'paru'
+    # Firmware update
+    'fwupd'
+    # Misc
+    'avahi'
 )
