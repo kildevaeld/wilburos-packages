@@ -1,21 +1,49 @@
--- -----------------------------------------------------
--- Input
--- -----------------------------------------------------
+--------------------------------
+---- WINDOWS AND WORKSPACES ----
+--------------------------------
 
-hl.config({
-    input = {
-        kb_layout    = "da",
-        kb_variant   = "",
-        kb_model     = "",
-        kb_options   = "grp:alt_shift_toggle",
-        kb_rules     = "",
+-- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/
+-- and https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
 
-        follow_mouse = 1,
+-- Example window rules that are useful
 
-        sensitivity  = 0, -- -1.0 - 1.0, 0 means no modification.
+local suppressMaximizeRule = hl.window_rule({
+    -- Ignore maximize requests from all apps. You'll probably like this.
+    name           = "suppress-maximize-events",
+    match          = { class = ".*" },
 
-        touchpad     = {
-            natural_scroll = true,
-        },
+    suppress_event = "maximize",
+})
+-- suppressMaximizeRule:set_enabled(false)
+
+hl.window_rule({
+    -- Fix some dragging issues with XWayland
+    name     = "fix-xwayland-drags",
+    match    = {
+        class      = "^$",
+        title      = "^$",
+        xwayland   = true,
+        float      = true,
+        fullscreen = false,
+        pin        = false,
     },
+
+    no_focus = true,
+})
+
+-- Layer rules also return a handle.
+-- local overlayLayerRule = hl.layer_rule({
+--     name  = "no-anim-overlay",
+--     match = { namespace = "^my-overlay$" },
+--     no_anim = true,
+-- })
+-- overlayLayerRule:set_enabled(false)
+
+-- Hyprland-run windowrule
+hl.window_rule({
+    name  = "move-hyprland-run",
+    match = { class = "hyprland-run" },
+
+    move  = "20 monitor_h-120",
+    float = true,
 })
