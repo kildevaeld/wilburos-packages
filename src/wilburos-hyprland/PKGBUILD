@@ -40,7 +40,10 @@ depends=(
     'thunar-volman'
     'thunar-vcs-plugin'
     'thunar-shares-plugin'
-
+    'gvfs'
+    'gvfs-smb'
+    'gvfs-afc'
+    
     'ttf-firacode-nerd'
 )
 
