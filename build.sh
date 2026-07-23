@@ -4,9 +4,11 @@ sudo pacman -Syu --noconfirm
 
 SOURCE_DIR=${PWD}/src
 DATA_DIR=/data
+PACKAGE_DIR=/packages
 
-PACKAGES=$(ls ${SOURCE_DIR})
-AUR_PACKAGES=$(cat ./aur-packages)
+PACKAGES=$(ls ${PACKAGE_DIR})
+
+
 
 check_version() {
     local path="$1/PKGBUILD"
@@ -30,15 +32,17 @@ check_version() {
 }
 
 
-
+mkdir -p ${SOURCE_DIR}
 
 for PACKAGE in ${PACKAGES}; do
 
-    found=$(check_version "${SOURCE_DIR}/${PACKAGE}")
+    found=$(check_version "${PACKAGE_DIR}/${PACKAGE}")
     if [ "$found" = true ]; then
         echo "Package already exists for ${PACKAGE}"
         continue
     fi
+
+    cp -r ${PACKAGE_DIR}/${PACKAGE} ${SOURCE_DIR}
 
     echo "Building package: ${PACKAGE}"
     cd ${SOURCE_DIR}/${PACKAGE}
@@ -52,7 +56,7 @@ cd ${DATA_DIR}
 for PACKAGE in *.pkg.tar.zst; do
     # echo "Signing package: ${PACKAGE}"
     # gpg --detach-sign --armor ${PACKAGE}
-    repo-add wilburos.db.tar.gz ${PACKAGE}
+    repo-add -n -p wilburos.db.tar.gz ${PACKAGE}
 done
 
-rm *.old
+rm -f *.old

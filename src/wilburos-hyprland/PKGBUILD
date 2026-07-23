@@ -1,7 +1,7 @@
 # Maintainer: Rasmus <rasmuskildevaeld@gmail.com>
 
 pkgname="wilburos-hyprland"
-pkgver=1.4
+pkgver=1.5
 pkgrel=1
 pkgdesc='Wilburos Hyprland configuration'
 arch=('any')
@@ -45,6 +45,8 @@ depends=(
     'gvfs-afc'
 
     'ttf-firacode-nerd'
+    'flat-remix'
+    'flat-remix-gtk'
 )
 
 prepare() {

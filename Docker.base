@@ -1,0 +1,37 @@
+FROM archlinux:base-devel
+
+# makepkg cannot (and should not) be run as root:
+RUN useradd -m build && \
+    pacman -Syu --noconfirm && \
+    pacman -Sy --noconfirm git && \
+    # Allow build to run stuff as root (to install dependencies):
+    echo "build ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/build
+
+RUN pacman -Syu --noconfirm
+
+RUN pacman -S deno rust vim curl bash clang --noconfirm
+
+USER build
+
+RUN cd /home/build && mkdir .gnupg && \
+    touch .gnupg/gpg.conf && \
+    echo "keyserver-options auto-key-retrieve" > .gnupg/gpg.conf && \
+    git clone https://aur.archlinux.org/paru.git && \
+    cd paru && \
+    makepkg --noconfirm --syncdeps --rmdeps --install --clean && \
+    cd && rm -r paru
+
+# USER ROOT
+
+COPY main.ts /home/build/wil/main.ts
+COPY app /home/build/wil/app
+COPY deno.json /home/build/wil/deno.json
+
+RUN cd /home/build/wil && \
+    sudo deno compile --allow-write --allow-read --allow-run -o ./wilburos-build main.ts && \
+    sudo mv wilburos-build /usr/bin/wilburos-build && \
+    sudo rm -r /home/build/wil
+
+# USER build
+
+WORKDIR /home/build

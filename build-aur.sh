@@ -4,10 +4,12 @@
 SOURCE_DIR=${PWD}/aur
 DATA_DIR=/data
 
+mkdir -p ${SOURCE_DIR}
+
+
 PACKAGES=$(ls ${SOURCE_DIR})
 AUR_PACKAGES=$(cat ./aur-packages)
 
-mkdir -p ${SOURCE_DIR}
 
 check_version() {
     local path="$1/PKGBUILD"
@@ -43,7 +45,7 @@ for AUR in ${AUR_PACKAGES}; do
         continue
     fi
 
-
+    cd $source_dir
     paru -U --noconfirm
     mv *.pkg.tar.zst ${DATA_DIR}/
     # # mv *.pkg.tar.zst.sig ${DATA_DIR}/
@@ -53,9 +55,7 @@ done
 
 cd ${DATA_DIR}
 for PACKAGE in *.pkg.tar.zst; do
-    # echo "Signing package: ${PACKAGE}"
-    # gpg --detach-sign --armor ${PACKAGE}
-    repo-add -n wilburos.db.tar.gz ${PACKAGE}
+    repo-add -n -p wilburos.db.tar.gz ${PACKAGE}
 done
 
-rm *.old
+rm -f *.old
