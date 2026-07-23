@@ -33,7 +33,7 @@ RUN pacman -Sy --noconfirm hyprland \
     pipewire-alsa \
     pipewire-pulse \
     pipewire-jack \
-    pulsemixer \ 
+    pulsemixer \
     gst-plugin-pipewire \
     bluez \
     bluez-utils \
@@ -60,17 +60,22 @@ RUN paru -Sy --noconfirm \
     wl-clipboard \
     clipvault \
     nm-connection-editor \
-    network-manager-applet \ 
+    network-manager-applet \
     rust
+
+RUN paru -Sy --noconfirm vim
 
 USER root
 
 COPY src /home/build/src
 COPY build.sh /home/build
+COPY build-aur.sh /home/build
 COPY aur-packages /home/build
 
 
 RUN chmod +x /home/build/build.sh
+RUN chmod +x /home/build/build-aur.sh
+
 RUN chown -R build:build /home/build
 
 RUN pacman -R --noconfirm rust
@@ -81,5 +86,4 @@ USER build
 
 VOLUME [ "/data" ]
 
-CMD [ "/home/build/build.sh" ]
-
+# CMD [ "/home/build/build.sh" ]
