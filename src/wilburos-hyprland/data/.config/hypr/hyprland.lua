@@ -1,7 +1,7 @@
 
 
 require 'conf.appearance'
-require 'conf.animation'
+require 'conf.animations'
 require 'conf.environment'
 require 'conf.autostart'
 require 'conf.layout'
