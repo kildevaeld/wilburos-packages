@@ -62,7 +62,7 @@ export async function readPackage(path: string) {
   const pkgString = await Deno.readTextFile(pkgPath);
 
   const name = createExtractFieldRegex("pkgname").exec(pkgString)![1].replace(
-    /"/,
+    /["']/gm,
     "",
   ).trim();
 
@@ -88,12 +88,12 @@ export async function buildAurPackage(config: Config, pkgName: string) {
     await Deno.remove(workPath, {
       recursive: true,
     });
-  } catch {}
+  } catch { }
 
   await ensurePath(workPath);
 
   const gitUrl = `${AUR_URL}/${pkgName}.git`;
-  console.log(`Clone ${gitUrl} into ${workPath}`);
+  console.log(`Cloning ${gitUrl} into ${workPath}`);
   const git = await Deno.spawnAndWait("git", {
     args: ["clone", gitUrl, workPath],
   });
@@ -111,9 +111,11 @@ export async function buildAurPackage(config: Config, pkgName: string) {
 
   if (await getPackageDistFile(databaseDir, pkgInfo)) {
     console.info("Skipping:", pkgName);
+    return;
   }
 
   // Build package
+  console.log(`Building package ${pkgName} in ${workPath}`);
   const ret = await Deno.spawnAndWait("makepkg", {
     cwd: workPath,
     args: ["-s", "--install", "--clean", "--noconfirm"],
@@ -128,7 +130,7 @@ export async function buildAurPackage(config: Config, pkgName: string) {
   const distFile = await getPackageDistFile(workPath, pkgInfo);
 
   if (!distFile) {
-    throw new Error("Could not find destination file");
+    throw new Error("Could not find destination file " + JSON.stringify(pkgInfo));
   }
 
   // Move file to database
@@ -136,13 +138,29 @@ export async function buildAurPackage(config: Config, pkgName: string) {
   //   `${workPath}/${distFile}`,
   //   `${databaseDir}/${distFile}`,
   // );
-  await Deno.spawnAndWait("sudo", {
+  const status = await Deno.spawnAndWait("sudo", {
     args: ["mv", `${workPath}/${distFile}`, `${databaseDir}/${distFile}`],
   });
 
+  if (!status.success) {
+    throw new Error(
+      `Failed to move package: ${new TextDecoder().decode(status.stderr)}`,
+    );
+  }
+
   // Add to database
-  await Deno.spawnAndWait("sudo", {
+  const addStatus = await Deno.spawnAndWait("sudo", {
     cwd: databaseDir,
-    args: ["repo_add", "-n", "-p", databaseFile, distFile],
+    args: ["repo-add", "-n", "-p", databaseFile, distFile],
   });
+
+  if (!addStatus.success) {
+    throw new Error(
+      `Failed to add package to database: ${new TextDecoder().decode(addStatus.stderr)}`,
+    );
+  }
+
+  console.log(`Successfully built and added ${pkgName} to database`);
+
 }
+

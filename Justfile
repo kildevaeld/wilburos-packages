@@ -1,3 +1,4 @@
+aur-package := `cat aur-packages | tr '\n' ' '`
 
 default:
     @just -l
@@ -10,7 +11,7 @@ build:
     docker run --rm -v $(pwd)/x86_64:/data -v $(pwd)/src:/packages wilburos-packages "./build.sh"
 
 build-aur: build-image
-    docker run --rm -v $(pwd)/x86_64:/database wilburos-packages wilburos-build -a -w /home/build/tmp -d /database/wilburos.db.tar.gz theme.sh
+    docker run --rm -v $(pwd)/x86_64:/database wilburos-packages wilburos-build -a -w /home/build/tmp -d /database/wilburos.db.tar.gz {{aur-package}}
 
 build-image:
     docker build -t wilburos-packages .
