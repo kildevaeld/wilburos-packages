@@ -1,11 +1,5 @@
-import { exists } from "@std/fs";
 import { Config } from "./config.ts";
-import * as Path from "@std/path";
-import {
-  buildArchPackage,
-  getPackageDistFile,
-  readPackageBuild,
-} from "./utils.ts";
+import { buildArchPackage, readPackageBuild } from "./utils.ts";
 const AUR_URL = "https://aur.archlinux.org";
 
 async function ensurePath(path: string) {
