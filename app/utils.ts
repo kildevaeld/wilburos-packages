@@ -79,6 +79,7 @@ export async function buildArchPackage(
     return;
   }
 
+  console.log("Building package:", pkgName);
   const ret = await Deno.spawnAndWait("makepkg", {
     cwd: workPath,
     args: ["-s", "--install", "--clean", "--noconfirm"],

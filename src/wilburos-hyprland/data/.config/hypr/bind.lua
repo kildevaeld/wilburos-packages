@@ -3,9 +3,9 @@ local mainMod = config.mainMod
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(config.terminal))
-local closeWindowBind = hl.bind(mainMod .. " + Q", hl.dsp.window.close())
+local closeWindowBind = hl.bind('CONTROL' .. " + Q", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
-hl.bind(mainMod .. " + SHIFT + M",
+hl.bind(mainMod .. " + SHIFT + E",
     hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(config.fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))

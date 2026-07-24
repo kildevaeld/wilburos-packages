@@ -2,6 +2,8 @@ FROM wilburos-build-base
 
 VOLUME [ "/database", "/packages" ]
 
+RUN sudo pacman -Sy
+
 # FROM archlinux:base-devel
 
 # # makepkg cannot (and should not) be run as root:

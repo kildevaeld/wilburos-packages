@@ -2,7 +2,7 @@
 local CONFIG = {
     fileManager  = "thunar",
     terminal = "kitty",
-    menu = "hyprland",
+    menu = "wofi",
     mainMod = "SUPER"
 }
 
