@@ -149,9 +149,9 @@ export async function buildAurPackage(config: Config, pkgName: string) {
   }
 
   // Add to database
-  const addStatus = await Deno.spawnAndWait("sudo", {
+  const addStatus = await Deno.spawnAndWait("repo-add", {
     cwd: databaseDir,
-    args: ["repo-add", "-n", "-p", databaseFile, distFile],
+    args: ["-n", "-p", databaseFile, distFile],
   });
 
   if (!addStatus.success) {
