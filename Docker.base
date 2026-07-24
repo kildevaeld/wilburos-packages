@@ -28,7 +28,7 @@ COPY app /home/build/wil/app
 COPY deno.json /home/build/wil/deno.json
 
 RUN cd /home/build/wil && \
-    sudo deno compile --allow-write --allow-read --allow-run -o ./wilburos-build main.ts && \
+    sudo deno compile -A -o ./wilburos-build main.ts && \
     sudo mv wilburos-build /usr/bin/wilburos-build && \
     sudo rm -r /home/build/wil
 

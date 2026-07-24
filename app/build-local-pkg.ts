@@ -1,12 +1,7 @@
-import { exists } from "@std/fs";
 import { Config } from "./config.ts";
+import { buildArchPackage, readPackageBuild } from "./utils.ts";
 import * as Path from "@std/path";
-import {
-  buildArchPackage,
-  getPackageDistFile,
-  readPackageBuild,
-} from "./utils.ts";
-const AUR_URL = "https://aur.archlinux.org";
+import { cp } from "node:fs/promises";
 
 async function ensurePath(path: string) {
   await Deno.mkdir(path, {
@@ -86,7 +81,9 @@ async function ensurePath(path: string) {
 //   } as Package;
 // }
 
-export async function buildAurPackage(config: Config, pkgName: string) {
+export async function buildLocalPackage(config: Config, pkgPath: string) {
+  const pkgName = Path.basename(pkgPath);
+
   const workPath = `${config.workdir}/${pkgName}`;
 
   try {
@@ -95,19 +92,7 @@ export async function buildAurPackage(config: Config, pkgName: string) {
     });
   } catch {}
 
-  await ensurePath(workPath);
-
-  const gitUrl = `${AUR_URL}/${pkgName}.git`;
-  console.log(`Cloning ${gitUrl} into ${workPath}`);
-  const git = await Deno.spawnAndWait("git", {
-    args: ["clone", gitUrl, workPath],
-  });
-
-  if (!git.success) {
-    throw new Error(
-      `Could not clone: ${gitUrl}: ${new TextDecoder().decode(git.stderr)}`,
-    );
-  }
+  await cp(pkgPath, workPath, { recursive: true });
 
   const pkgInfo = await readPackageBuild(workPath);
 
@@ -117,59 +102,4 @@ export async function buildAurPackage(config: Config, pkgName: string) {
     workPath,
     databasePath: config.databaseDir,
   });
-  // const databaseDir = Path.dirname(config.databaseDir);
-  // const databaseFile = Path.basename(config.databaseDir);
-
-  // if (await getPackageDistFile(databaseDir, pkgInfo)) {
-  //   console.info("Skipping:", pkgName);
-  //   return;
-  // }
-
-  // // Build package
-  // console.log(`Building package ${pkgName} in ${workPath}`);
-  // const ret = await Deno.spawnAndWait("makepkg", {
-  //   cwd: workPath,
-  //   args: ["-s", "--install", "--clean", "--noconfirm"],
-  // });
-
-  // if (!ret.success) {
-  //   throw new Error(
-  //     `Failed to build package: ${new TextDecoder().decode(ret.stderr)}`,
-  //   );
-  // }
-
-  // const distFile = await getPackageDistFile(workPath, pkgInfo);
-
-  // if (!distFile) {
-  //   throw new Error(
-  //     "Could not find destination file " + JSON.stringify(pkgInfo),
-  //   );
-  // }
-
-  // // Move file to database
-  // const status = await Deno.spawnAndWait("sudo", {
-  //   args: ["mv", `${workPath}/${distFile}`, `${databaseDir}/${distFile}`],
-  // });
-
-  // if (!status.success) {
-  //   throw new Error(
-  //     `Failed to move package: ${new TextDecoder().decode(status.stderr)}`,
-  //   );
-  // }
-
-  // // Add to database
-  // const addStatus = await Deno.spawnAndWait("repo-add", {
-  //   cwd: databaseDir,
-  //   args: ["-n", "-p", databaseFile, distFile],
-  // });
-
-  // if (!addStatus.success) {
-  //   throw new Error(
-  //     `Failed to add package to database: ${
-  //       new TextDecoder().decode(addStatus.stderr)
-  //     }`,
-  //   );
-  // }
-
-  // console.log(`Successfully built and added ${pkgName} to database`);
 }

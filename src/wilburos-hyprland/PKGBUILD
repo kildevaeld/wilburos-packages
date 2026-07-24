@@ -1,7 +1,7 @@
 # Maintainer: Rasmus <rasmuskildevaeld@gmail.com>
 
 pkgname="wilburos-hyprland"
-pkgver=1.5
+pkgver=1.6
 pkgrel=1
 pkgdesc='Wilburos Hyprland configuration'
 arch=('any')
@@ -20,7 +20,8 @@ depends=(
     'waybar'
     'otf-font-awesome'
     'wl-clipboard'
-    'clipvault'
+    # 'clipvault'
+    'wofi'
     'dunst' # notification daemon
     # Screenshot
     'grim'
@@ -44,9 +45,14 @@ depends=(
     'gvfs-smb'
     'gvfs-afc'
 
+
+    'qt5-wayland'
+    'qt6-wayland'
+
     'ttf-firacode-nerd'
-    'flat-remix'
-    'flat-remix-gtk'
+    #'flat-remix'
+    #'flat-remix-gtk'
+
 )
 
 prepare() {

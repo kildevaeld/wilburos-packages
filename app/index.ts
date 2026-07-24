@@ -1,5 +1,6 @@
 import { parseArgs } from "@std/cli";
 import { buildAurPackage } from "./build-aur-pkg.ts";
+import { buildLocalPackage } from "./build-local-pkg.ts";
 import type { Config } from "./config.ts";
 
 function prinUsage() {
@@ -39,6 +40,15 @@ if (args.aur) {
   for (const pkgName of pkgNames) {
     try {
       await buildAurPackage(cfg, pkgName);
+    } catch (e) {
+      console.error("Could not build:", pkgName);
+      console.error(e);
+    }
+  }
+} else {
+  for (const pkgName of pkgNames) {
+    try {
+      await buildLocalPackage(cfg, pkgName);
     } catch (e) {
       console.error("Could not build:", pkgName);
       console.error(e);
