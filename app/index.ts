@@ -46,6 +46,7 @@ if (args.aur) {
     }
   }
 } else {
+  Deno.spawnAndWait("sudo", { args: ["pacman", "Syy"] });
   for (const pkgName of pkgNames) {
     try {
       await buildLocalPackage(cfg, pkgName);

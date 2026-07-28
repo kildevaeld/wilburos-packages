@@ -2,7 +2,7 @@
 local CONFIG = {
     fileManager  = "thunar",
     terminal = "kitty",
-    menu = "wofi --show run",
+    menu = "rofi -show run",
     mainMod = "SUPER"
 }
 
