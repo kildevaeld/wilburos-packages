@@ -1,7 +1,7 @@
 # Maintainer: Rasmus <rasmuskildevaeld@gmail.com>
 
 pkgname="wilburos-swe"
-pkgver=1.0
+pkgver=1.1
 pkgrel=1
 pkgdesc='Wilburos SWE configuration'
 arch=('any')
@@ -19,4 +19,5 @@ depends=(
     'uv'
     'fish'
     'zed'
+    # 'docker'
 )

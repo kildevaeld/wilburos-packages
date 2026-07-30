@@ -1,7 +1,7 @@
 # Maintainer: Rasmus <rasmuskildevaeld@gmail.com>
 
 pkgname="wilburos-hyprland"
-pkgver=1.8.0
+pkgver=1.9.1
 pkgrel=1
 pkgdesc='Wilburos Hyprland configuration'
 arch=('any')
@@ -17,11 +17,15 @@ depends=(
     'hyprshutdown'
     'hyprpolkitagent'
     'xdg-desktop-portal-hyprland'
-    'waybar'
     'otf-font-awesome'
     'wl-clipboard'
+    'clipvault'
+    'polkit'
+    'brightnessctl'
+    'playerctl'
     # 'clipvault'
     'rofi'
+    'ashell'
     'dunst' # notification daemon
     # Screenshot
     'grim'
@@ -50,6 +54,7 @@ depends=(
     'qt6-wayland'
     'ttf-firacode-nerd'
     'breeze-gtk'
+    'breeze-icons'
     'nwg-look'
     #'flat-remix'
     #'flat-remix-gtk'
