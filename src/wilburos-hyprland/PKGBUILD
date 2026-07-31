@@ -1,7 +1,7 @@
 # Maintainer: Rasmus <rasmuskildevaeld@gmail.com>
 
 pkgname="wilburos-hyprland"
-pkgver=1.9.1
+pkgver=1.10
 pkgrel=1
 pkgdesc='Wilburos Hyprland configuration'
 arch=('any')
@@ -53,6 +53,7 @@ depends=(
     'qt5-wayland'
     'qt6-wayland'
     'ttf-firacode-nerd'
+    'ttf-dejavu'
     'breeze-gtk'
     'breeze-icons'
     'nwg-look'
