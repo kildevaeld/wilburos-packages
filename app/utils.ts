@@ -86,8 +86,11 @@ export async function buildArchPackage(
   });
 
   if (!ret.success) {
+    const decoder = new TextDecoder();
     throw new Error(
-      `Failed to build package: ${new TextDecoder().decode(ret.stderr)}`,
+      `Failed to build package:\n${decoder.decode(ret.stdout)}\n${
+        decoder.decode(ret.stderr)
+      }`,
     );
   }
 
