@@ -1,7 +1,7 @@
 # Maintainer: Rasmus <rasmuskildevaeld@gmail.com>
 
 pkgname="wilburos-hyprland"
-pkgver=1.10
+pkgver=1.11
 pkgrel=1
 pkgdesc='Wilburos Hyprland configuration'
 arch=('any')
@@ -23,7 +23,7 @@ depends=(
     'polkit'
     'brightnessctl'
     'playerctl'
-    # 'clipvault'
+    'clipvault'
     'rofi'
     'ashell'
     'dunst' # notification daemon
