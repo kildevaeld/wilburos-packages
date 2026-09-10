@@ -1,7 +1,7 @@
 # Maintainer: Rasmus <rasmuskildevaeld@gmail.com>
 
 pkgname="wilburos-hyprland"
-pkgver=1.11
+pkgver=1.12
 pkgrel=1
 pkgdesc='Wilburos Hyprland configuration'
 arch=('any')
@@ -59,6 +59,8 @@ depends=(
     'nwg-look'
     #'flat-remix'
     #'flat-remix-gtk'
+    'mesa'
+    'vulkan-intel'
 
 )
 
