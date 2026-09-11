@@ -1,0 +1,28 @@
+# Maintainer: Rasmus <rasmuskildevaeld@gmail.com>
+
+pkgname="wilburos-calamares-config"
+pkgver=1.0
+pkgrel=1
+pkgdesc='Calamares configuration for WilburOS (BIOS/GRUB + UEFI/GRUB)'
+arch=('any')
+url="https://github.com/kildevaeld/wilburos-packages"
+license=('GPL3')
+depends=(
+    'calamares'
+    'grub'
+    'efibootmgr'
+    'dosfstools'
+    'os-prober'
+)
+
+prepare() {
+    cp -af ../files/. "$srcdir"
+}
+
+package() {
+    # copy all files recursively into /etc
+    (cd "$srcdir" && find etc -type f -exec install -Dm 644 "{}" "$pkgdir/{}" \;)
+
+    # scripts need to be executable
+    chmod 755 "$pkgdir"/etc/calamares/launch.sh
+}

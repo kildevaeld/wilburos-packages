@@ -1,0 +1,37 @@
+# SPDX-FileCopyrightText: no
+# SPDX-License-Identifier: CC0-1.0
+#
+## Distribution Branding Settings for WilburOS
+---
+componentName:  wilburos
+
+welcomeStyleCalamares:   false
+welcomeExpandingLogo:    true
+
+windowExpanding:    normal
+windowSize:         800px,600px
+windowPlacement:    center
+
+sidebar: widget
+navigation: widget
+
+strings:
+    productName:         WilburOS
+    shortProductName:    WilburOS
+    versionedName:       WilburOS
+    shortVersionedName:  WilburOS
+    bootloaderEntryName: WilburOS
+    productUrl:          https://github.com/kildevaeld/wilburos-packages
+    supportUrl:          https://github.com/kildevaeld/wilburos-packages/issues
+    knownIssuesUrl:      https://github.com/kildevaeld/wilburos-packages/issues
+    releaseNotesUrl:     https://github.com/kildevaeld/wilburos-packages/releases
+
+images:
+    productIcon:         "icon.svg"
+    productLogo:         "logo.svg"
+
+style:
+   SidebarBackground:        "#1b1d23"
+   SidebarText:              "#EFF0F1"
+   SidebarTextCurrent:       "#FFFFFF"
+   SidebarBackgroundCurrent: "#5e6ad2"
