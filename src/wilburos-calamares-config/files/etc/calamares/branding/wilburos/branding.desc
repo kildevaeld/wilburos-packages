@@ -35,3 +35,10 @@ style:
    SidebarText:              "#EFF0F1"
    SidebarTextCurrent:       "#FFFFFF"
    SidebarBackgroundCurrent: "#5e6ad2"
+
+## Slideshow
+# Simple declarative slideshow (no custom QML needed): each entry in
+# *sequence* is shown in turn, relative to this branding directory.
+slideshow:
+    sequence:
+        - "logo.svg"

@@ -1,7 +1,7 @@
 # Maintainer: Rasmus <rasmuskildevaeld@gmail.com>
 
 pkgname="wilburos-calamares-config"
-pkgver=1.1
+pkgver=1.2
 pkgrel=1
 pkgdesc='Calamares configuration for WilburOS (BIOS/GRUB + UEFI/GRUB)'
 arch=('any')
