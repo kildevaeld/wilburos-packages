@@ -1,0 +1,12 @@
+## Copyright (C) 2026 Rasmus Kildevæld <rasmuskildevaeld@gmail.com>
+
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = lsb-release
+
+[Action]
+Description = Updating Wilburos LSB Configurations...
+When = PostTransaction
+Exec = /usr/share/wilburos/bin/wilbur-hooks lsb-release

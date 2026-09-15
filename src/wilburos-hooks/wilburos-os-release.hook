@@ -1,0 +1,12 @@
+## Copyright (C) 2026 Rasmus Kildevæld <rasmuskildevaeld@gmail.com>
+
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = filesystem
+
+[Action]
+Description = Updating Wilburos OS-Specific Configurations...
+When = PostTransaction
+Exec = /usr/share/wilburos/bin/wilbur-hooks os-release

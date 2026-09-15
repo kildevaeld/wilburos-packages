@@ -1,0 +1,35 @@
+# Maintainer: Aditya Shakya <adi1090x@gmail.com>
+
+pkgname="wilburos-hooks"
+pkgver=1.0
+pkgrel=1
+pkgdesc='Pacman hooks for Wilburos filesystem'
+arch=('any')
+url="https://github.com/kildevaeld/wilburos-packages"
+license=('GPL3')
+source=(
+    'wilburos-lsb-release.hook'
+    'wilburos-os-release.hook'
+    'wilburos-hooks'
+)
+
+sha256sums=(
+    'SKIP'
+    'SKIP'
+    'SKIP'
+)
+
+package() {
+	local hooks="$pkgdir"/usr/share/libalpm/hooks
+	local pixmaps="$pkgdir"/usr/share/pixmaps
+	local bin="$pkgdir"/usr/share/wilburos/bin
+
+	mkdir -p "$bin"
+
+	install -Dm 644 wilburos-lsb-release.hook      "$hooks"/wilburos-lsb-release.hook
+	install -Dm 644 wilburos-os-release.hook       "$hooks"/wilburos-os-release.hook
+
+	install -Dm 755 wilburos-hooks         	"$bin"/wilburos-hooks
+
+
+}

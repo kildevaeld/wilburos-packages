@@ -14,7 +14,8 @@ build:
         /packages/wilburos-hyprland \
         /packages/wilburos-swe \
         /packages/calamares \
-        /packages/wilburos-calamares-config
+        /packages/wilburos-calamares-config \
+        /packages/wilburos-hooks
 
 build-aur: build-image
     docker run --rm -v $(pwd)/x86_64:/database wilburos-packages wilburos-build -a -w /home/build/tmp -d /database/wilburos.db.tar.gz {{ aur-package }}
